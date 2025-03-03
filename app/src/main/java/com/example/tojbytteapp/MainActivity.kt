@@ -1,5 +1,6 @@
 package com.example.tojbytteapp
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,10 +24,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.foundation.border
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.sp
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +55,7 @@ class MainActivity : ComponentActivity() {
              */
         }
     }
+
 
     @Composable
     fun WelcomeSearchBar(firstName: String) {
@@ -157,6 +169,23 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
+    fun SmallerImageButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
+        Box(
+            modifier = Modifier
+                .clickable(onClick = onClick)
+                .size(30.dp)
+        ) {
+            Image(
+                painter = painter,
+                contentDescription = contentDescription,
+                modifier = Modifier
+                    .width(30.dp)
+                    .height(30.dp)
+            )
+        }
+    }
+
+    @Composable
     fun RotatedImageButton(
         painter: Painter,
         contentDescription: String,
@@ -189,11 +218,6 @@ class MainActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                //.padding(
-                //    start = 25.dp,
-                //    end = 25.dp,
-                //    top = 100.dp
-                //)
                 .border(borderSize, borderColor)
         ) {
             Image(
@@ -207,32 +231,86 @@ class MainActivity : ComponentActivity() {
 
     val product12345 = Product(
         id = 12345,
-        name = "Shirt",
+        name = "Air Force 1",
         owner = "AndreasRG",
-        price = 99.99,
+        price = 159.99,
         description = "This is an elaborate description of the item that is listed. Crafted with meticulous attention to detail, this item embodies both elegance and functionality, catering to the discerning tastes of individuals who appreciate quality. Whether admired from afar or experienced up close, its seamless design and impeccable craftsmanship make it a coveted addition to any collection. Truly, it stands as a testament to the perfect blend of tradition and innovation, promising to exceed expectations in every conceivable way.",
         image = R.drawable.airforcetest
     )
 
     @Composable
     fun ProductPage(productId:Product) {
-        Column(modifier = Modifier){
+        Column(modifier = Modifier
+                .padding(
+                    start = 25.dp,
+                    end = 25.dp,
+                    top = 90.dp
+                )
+                ) {
             ImageWithBorder(
                 painter = painterResource(id = productId.image),
                 contentDescription = "Picture of ${productId.name}"
             )
-            Row{
-                Text( text = productId.name)
-                Text( text = "${productId.price},-")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        top = 10.dp
+                    ),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = productId.name,
+                    fontSize = 40.sp
+                )
+                Text(
+                    text = "${productId.price},-",
+                    fontSize = 25.sp
+                )
             }
-            Row{
-                Text( text = "Listed by ${productId.owner}")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box {
+                    Row() {
+                        Text(
+                            text = "Listed by ",
+                            fontSize = 16.sp,
+                            color = Color(0xFFB7B2B2),
+                            modifier = Modifier.padding(top = 5.dp)
+                        )
+                        Text(
+                            text = productId.owner,
+                            fontSize = 16.sp,
+                            color = Color(0xFF4F4F4F),
+                            modifier = Modifier.padding(top = 5.dp)
+                        )
+                        SmallerImageButton(
+                            painter = painterResource(id = R.drawable.profileicon),
+                            contentDescription = "Icon for ${productId.name} profile"
+                        ) {}
+                    }
+                }
                 ImageButton(
                     painter = painterResource(id = R.drawable.tradesellicon),
                     contentDescription = "Icon for trade/selling"
                 ) {}
             }
-            Text( text = productId.description)
+            Box(modifier = Modifier
+                . padding(
+                    top = 10.dp
+                    )
+            ){
+            Text(
+                text = productId.description,
+                fontSize = 16.sp,
+                lineHeight = 20.sp
+            )
+            }
         }
     }
 }
