@@ -1,6 +1,5 @@
 package com.example.tojbytteapp
 
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -36,8 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
 
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +44,13 @@ class MainActivity : ComponentActivity() {
             ReturnSearchBar()
             ProductPage(product12345)
             MenuBar()
+            /*
+            PrototypeLayout1()
+            Tester senere, ved ikke hvordan de skal integreres endnu,
+            men kør denne alene i content, for at se siden :)
+             */
         }
     }
-
 
     @Composable
     fun WelcomeSearchBar(firstName: String) {
