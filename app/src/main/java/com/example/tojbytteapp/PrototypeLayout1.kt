@@ -2,6 +2,7 @@ package com.example.tojbytteapp
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -22,61 +24,81 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tojbytteapp.Product
+import com.example.tojbytteapp.getRandomProduct
+import com.example.tojbytteapp.productsList
 
 
 data class ItemData(
     val name: String,
     val price: String,
-    val iconResId: Int,
+    val tradable: Boolean,
     val backgroundImageResId: Int
 )
 
 @Composable
 fun PrototypeLayout1() {
     val items = listOf(
-        ItemData("Item 1", "$10", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 2", "$15", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 3", "$20", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 4", "$25", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 5", "$30", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 6", "$35", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 7", "$40", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 8", "$45", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 9", "$50", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 10", "$55", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 11", "$60", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 12", "$65", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 13", "$70", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 14", "$75", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 15", "$80", R.drawable.addicon, R.drawable.shoppingcarticon),
-        ItemData("Item 16", "$85", R.drawable.addicon, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon)
         // Add more items as needed
     )
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(innerPadding)
+                //.padding(innerPadding)
         ) {
             // Sticky Header
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Gray)
+                    //.background(Color.Gray)
                     .align(Alignment.TopCenter)
             ) {
-                FrontpageHeader()
+                WelcomeSearchBar("User")
             }
             // Content
             // Nok ikke den mest optimale måde hardcoded, men this good!
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 100.dp, bottom = 170.dp)
+                    .fillMaxSize()
+                    .padding(top = 90.dp//, bottom = 170.dp
+                    )
             ) {
                 item { FrontpageTitle() }
                 items(items.chunked(2)) { rowItems ->
@@ -85,14 +107,17 @@ fun PrototypeLayout1() {
                             Column(
                                 modifier = Modifier
                                     .weight(1f)
-                                    .padding(8.dp)
-                                    .background(Color.LightGray)
-                                    .padding(16.dp)
+                                    .padding(start = 12.dp,
+                                        end = 12.dp,
+                                        top = 8.dp,
+                                        bottom = 8.dp)
+                                    .background(Color(0xFFD9D9D9))
+                                    .padding(57.dp)
                             ) {
                                 Text(//name
                                     text = item.name,
                                     color = Color.Black,
-                                    fontSize = 18.sp,
+                                    fontSize = 15.sp,
                                     modifier = Modifier.align(Alignment.Start)
                                 )
                                 Spacer(modifier = Modifier.weight(1f))
@@ -101,18 +126,22 @@ fun PrototypeLayout1() {
                                         .fillMaxWidth(),
                                     horizontalArrangement = Arrangement.End
                                 ) {
-                                    Image( //Add to cart icon
-                                        painter = painterResource(id = item.iconResId),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .size(24.dp)
-                                            .align(Alignment.CenterVertically)
-                                    )
+                                    if (item.tradable) {
+                                        Image( //Tradable Icon
+                                            painter = painterResource(id = R.drawable.tradeicon),
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .size(24.dp)
+                                                .align(Alignment.CenterVertically)
+                                        )
+
+                                    }
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text( //price
                                         text = item.price,
                                         color = Color.Black,
-                                        fontSize = 18.sp,
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.Bold,
                                         modifier = Modifier.align(Alignment.CenterVertically)
                                     )
                                 }
@@ -134,10 +163,53 @@ fun PrototypeLayout1() {
                         .align(Alignment.BottomCenter)
                 )
                 {
-                    FrontpageFooter()
+                    //FrontpageFooter()
                 }
             }
         }
+    }
+}
+@Composable
+fun WelcomeSearchBar(firstName: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                start = 15.dp,
+                top = 25.dp,
+                end = 15.dp//,
+                //bottom = 15.dp
+            )
+            ,//.background(color = Color(0xFFD9D9D9)),//Developing background color
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = "Welcome $firstName!",
+            color = Color(0xFF7D7878)
+        )
+        ImageButton(
+            painter = painterResource(id = R.drawable.searchicon),
+            contentDescription = "Icon for shopping bag"
+        ) {
+
+        }
+
+    }
+}
+@Composable
+fun ImageButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .size(50.dp)
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = contentDescription,
+            modifier = Modifier
+                .width(50.dp)
+                .height(50.dp)
+        )
     }
 }
 
@@ -188,11 +260,13 @@ fun FrontpageTitle(){
             text = "Discover what's new!",
             modifier = Modifier.align(Alignment.CenterVertically),
             textAlign = TextAlign.Center,
-            fontSize = 36.sp
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+
         )
     }
 }
-
+/*
 @Composable
 fun FrontpageFooter(){
     Box(
@@ -213,4 +287,4 @@ fun FrontpageFooter(){
         )
 
     }
-}
+}*/

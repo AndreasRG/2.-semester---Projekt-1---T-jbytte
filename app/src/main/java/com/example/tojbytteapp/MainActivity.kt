@@ -33,6 +33,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
@@ -44,17 +45,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //WelcomeSearchBar("Andreas")
-            ReturnSearchBar()
-            ProductPage(product12345)
-            MenuBar()
-            /*
-            PrototypeLayout1()
-            Tester senere, ved ikke hvordan de skal integreres endnu,
-            men kør denne alene i content, for at se siden :)
-             */
+            //HomepageLayout()
+            ProductpageLayout()
+            //TradepageLayout()
         }
     }
+
+    @Composable
+    fun HomepageLayout() {
+        PrototypeLayout1()
+        MenuBar()
+    }
+
+    @Composable
+    fun ProductpageLayout() {
+        ReturnSearchBar()
+        ProductPage(getRandomProduct(productsList))
+        MenuBar()
+    }
+
+    @Composable
+    fun TradepageLayout() {}
 
 
     @Composable
@@ -219,24 +230,22 @@ class MainActivity : ComponentActivity() {
             modifier = Modifier
                 .fillMaxWidth()
                 .border(borderSize, borderColor)
+                .height(350.dp)
         ) {
-            Image(
-                painter = painter,
-                contentDescription = contentDescription,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+            Column(modifier = Modifier
+                .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    painter = painter,
+                    contentDescription = contentDescription,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
         }
     }
 
-    val product12345 = Product(
-        id = 12345,
-        name = "Air Force 1",
-        owner = "AndreasRG",
-        price = 159.99,
-        description = "This is an elaborate description of the item that is listed. Crafted with meticulous attention to detail, this item embodies both elegance and functionality, catering to the discerning tastes of individuals who appreciate quality. Whether admired from afar or experienced up close, its seamless design and impeccable craftsmanship make it a coveted addition to any collection. Truly, it stands as a testament to the perfect blend of tradition and innovation, promising to exceed expectations in every conceivable way.",
-        image = R.drawable.airforcetest
-    )
 
     @Composable
     fun ProductPage(productId:Product) {
@@ -266,7 +275,8 @@ class MainActivity : ComponentActivity() {
                 )
                 Text(
                     text = "${productId.price},-",
-                    fontSize = 25.sp
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Row(
