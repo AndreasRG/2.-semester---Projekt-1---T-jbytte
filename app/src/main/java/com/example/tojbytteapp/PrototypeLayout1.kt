@@ -45,38 +45,6 @@ data class ItemData(
 
 @Composable
 fun PrototypeLayout1() {
-    val items = listOf(
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
-        ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon)
-        // Add more items as needed
-    )
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Box(
             modifier = Modifier
@@ -97,7 +65,9 @@ fun PrototypeLayout1() {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 90.dp//, bottom = 170.dp
+                    .padding(top = 70.dp, //bottom = 170.dp
+                        start = 10.dp,
+                        end = 10.dp
                     )
             ) {
                 item { FrontpageTitle() }
@@ -109,16 +79,20 @@ fun PrototypeLayout1() {
                                     .weight(1f)
                                     .padding(start = 12.dp,
                                         end = 12.dp,
-                                        top = 8.dp,
-                                        bottom = 8.dp)
+                                        top = 12.dp,
+                                        bottom = 12.dp)
                                     .background(Color(0xFFD9D9D9))
-                                    .padding(57.dp)
+                                    .height(170.dp)
+                                    .width(150.dp)
+                                    //.padding(57.dp)
                             ) {
                                 Text(//name
                                     text = item.name,
                                     color = Color.Black,
                                     fontSize = 15.sp,
-                                    modifier = Modifier.align(Alignment.Start)
+                                    modifier = Modifier
+                                        .align(Alignment.Start)
+                                        .padding(10.dp)
                                 )
                                 Spacer(modifier = Modifier.weight(1f))
                                 Row(
@@ -131,19 +105,36 @@ fun PrototypeLayout1() {
                                             painter = painterResource(id = R.drawable.tradeicon),
                                             contentDescription = null,
                                             modifier = Modifier
-                                                .size(24.dp)
+                                                //.size(24.dp)
+                                                .height(34.dp)
+                                                .width(24.dp)
                                                 .align(Alignment.CenterVertically)
+                                                //.padding(bottom = 5.dp)
                                         )
 
                                     }
                                     Spacer(modifier = Modifier.width(8.dp))
+                                    if (item.tradable) {
                                     Text( //price
                                         text = item.price,
                                         color = Color.Black,
                                         fontSize = 15.sp,
                                         fontWeight = FontWeight.Bold,
-                                        modifier = Modifier.align(Alignment.CenterVertically)
+                                        modifier = Modifier
+                                            .align(Alignment.CenterVertically)
+                                            .padding(end = 5.dp)
                                     )
+                                    } else {
+                                        Text( //price
+                                            text = item.price,
+                                            color = Color.Black,
+                                            fontSize = 15.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            modifier = Modifier
+                                                .align(Alignment.CenterVertically)
+                                                .padding(end = 5.dp, bottom = 5.dp)
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -189,7 +180,7 @@ fun WelcomeSearchBar(firstName: String) {
         )
         ImageButton(
             painter = painterResource(id = R.drawable.searchicon),
-            contentDescription = "Icon for shopping bag"
+            contentDescription = "Icon for search icon"
         ) {
 
         }

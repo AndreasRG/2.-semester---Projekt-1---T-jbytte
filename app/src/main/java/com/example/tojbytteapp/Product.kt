@@ -352,3 +352,43 @@ class Product constructor(
         product12372,
         product12373
     )
+
+var myItemList:MutableList<Product> = mutableListOf(getRandomProduct(productsList), getRandomProduct(
+    productsList), getRandomProduct(productsList), getRandomProduct(
+    productsList), getRandomProduct(
+    productsList), getRandomProduct(productsList))
+
+var userItemList:MutableList<Product> = mutableListOf(getRandomProduct(productsList), getRandomProduct(
+    productsList), getRandomProduct(productsList))
+
+val items = listOf(
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon),
+    ItemData(getRandomProduct(productsList).name, getRandomProduct(productsList).toString(), getRandomProduct(productsList).tradable, R.drawable.shoppingcarticon)
+)

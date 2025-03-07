@@ -31,6 +31,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,8 +46,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //HomepageLayout()
-            ProductpageLayout()
+            HomepageLayout()
+            //ProductpageLayout()
             //TradepageLayout()
         }
     }
@@ -65,7 +66,21 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun TradepageLayout() {}
+    fun TradepageLayout() {
+        Column {
+            TradePageBar()
+            TradeWindow(myItemList, "Your")
+            TradeConfirmDeny()
+            TradeWindow(userItemList, userItemList[0].owner)
+        }
+        Column {
+            TradePageBarFiller()
+            SelectedItemsTradeWindow(myItemList)
+            TradeConfirmDenyFiller()
+            SelectedItemsTradeWindow(userItemList)
+        }
+        MenuBar()
+    }
 
 
     @Composable
@@ -122,6 +137,64 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
+    fun TradePageBar() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 15.dp,
+                    top = 25.dp,
+                    end = 15.dp,
+                    bottom = 15.dp
+                ),//.background(color = Color(0xFFD9D9D9)),//Developing background color
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            RotatedImageButton(
+                painter = painterResource(id = R.drawable.uturnicon),
+                contentDescription = "Icon for U-turn",
+                rotation = 90f
+            ) {}
+            Text( text = "Trade offer from ${userItemList[0].owner}",
+                color = Color(0xFF5F5B5B),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+           )
+            Image(
+                painter = painterResource(id = R.drawable.uturnicon),
+                contentDescription = "",
+                modifier = Modifier
+                    .width(50.dp)
+                    .height(50.dp)
+                    .graphicsLayer(alpha = 0f)
+            )
+        }
+    }
+    @Composable
+    fun TradeConfirmDenyFiller() {
+        Row(modifier = Modifier
+            .padding(
+                start = 15.dp,
+                top = 50.dp,
+                end = 15.dp,
+                bottom = 7.dp
+            ))//.background(color = Color(0xFFD9D9D9)),//Developing background color
+            {}
+    }
+
+    @Composable
+    fun TradePageBarFiller() {
+        Row(modifier = Modifier
+            .padding(
+                start = 15.dp,
+                top = 75.dp,
+                end = 15.dp,
+                bottom = 15.dp
+            ))//.background(color = Color(0xFFD9D9D9)),//Developing background color
+        {}
+    }
+
+    @Composable
     fun MenuBar() {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -166,7 +239,7 @@ class MainActivity : ComponentActivity() {
     fun ImageButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
         Box(
             modifier = Modifier
-                .clickable(onClick = onClick)
+                .clickable(onClick = onClick) // Correct the clickable usage
                 .size(50.dp)
         ) {
             Image(
@@ -178,6 +251,7 @@ class MainActivity : ComponentActivity() {
             )
         }
     }
+
 
     @Composable
     fun SmallerImageButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
@@ -323,4 +397,186 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    @Composable
+    fun TradeWindow(selectedItems: MutableList<Product>, nameOfTrader: String) {
+        Column( modifier = Modifier
+            .padding(
+                start = 25.dp,
+                end = 25.dp,
+                bottom = 50.dp,
+                top = 50.dp
+            ),
+            verticalArrangement = Arrangement.SpaceEvenly
+
+        ) {
+            Text( text = "$nameOfTrader item(s) to trade",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold)
+            Row( modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 9.dp,
+                    bottom = 9.dp
+                ),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                for (i in 1..5) {
+                    TradeImage()
+                }
+            }
+            Row( modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 9.dp,
+                    bottom = 9.dp
+                ),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                for (i in 1..5) {
+                    TradeImage()
+                }
+            }
+            Row( modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 9.dp,
+                    bottom = 9.dp
+                ),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                for (i in 1..5) {
+                    TradeImage()
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun SelectedItemsTradeWindow(selectedItems: MutableList<Product>) {
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = 25.dp,
+                    end = 25.dp,
+                    bottom = 50.dp,
+                    top = 50.dp
+                ),
+                //.background(color = Color(0xFF000000))
+                //.graphicsLayer(alpha = 0.7f), // Opacity for development/overlapping items
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Text(
+                modifier = Modifier.graphicsLayer(alpha = 0f),
+                text = "HEJ",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFFffffff)
+            )
+
+            val totalRows = maxOf((selectedItems.size + 4) / 5, 3)
+            for (row in 0 until totalRows) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = 9.dp,
+                            bottom = 9.dp
+                        ),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    val startIndex = row * 5
+                    val endIndex = minOf(startIndex + 5, selectedItems.size)
+
+                    if (startIndex < selectedItems.size) {
+                        for (i in startIndex until endIndex) {
+                            ProductImage(selectedItems[i].image)
+                        }
+                        val emptySlots = 5 - (endIndex - startIndex)
+                        for (i in 0 until emptySlots) {
+                            TradeImage()
+                        }
+                    } else {
+                        for (i in 0 until 5) {
+                            TradeImage()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun TradeConfirmDeny() {
+        Row (
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text( text = "Confirm",
+                modifier = Modifier
+                    .background(color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(5.dp))
+                    .padding(5.dp),
+                fontSize = 20.sp,
+                color = Color(0xFF43893D),
+                fontWeight = FontWeight.Bold
+            )
+            Column (modifier = Modifier
+                .padding(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(text = "Request",
+                    modifier = Modifier
+                        .background(color = Color(0xFFD9D9D9),
+                            shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp))
+                        .padding(5.dp, top = 5.dp, bottom = 0.dp, end = 5.dp),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(text = "change",
+                    modifier = Modifier
+                        .background(color = Color(0xFFD9D9D9),
+                            shape = RoundedCornerShape(bottomStart = 5.dp, bottomEnd = 5.dp))
+                        .padding(start = 8.5.dp, end = 8.5.dp, bottom = 5.dp),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Text( text = "Decline",
+                modifier = Modifier
+                    .background(color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(5.dp))
+                    .padding(5.dp),
+                fontSize = 20.sp,
+                color = Color(0xFFAC341F),
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+
+
+    @Composable
+    fun TradeImage() {
+        Image(
+            painter = painterResource(id = R.drawable.greyicon),
+            contentDescription = "Grey background icon",
+            modifier = Modifier
+                .width(57.dp)
+                .height(57.dp)
+        )
+    }
+    @Composable
+    fun ProductImage(imageOfProduct: Int) {
+        Image(
+            painter = painterResource(id = imageOfProduct),
+            contentDescription = "Grey background icon",
+            modifier = Modifier
+                .width(57.dp)
+                .height(57.dp)
+        )
+    }
+
 }
